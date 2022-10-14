@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon"
+    href="./Weather/38-385231_transparent-rain-clip-art-transparent-rainy-day-clipart-removebg-preview.png" />
+  <script src="https://kit.fontawesome.com/60b736368c.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet" />
+  <title>Weather Report</title>
+  <style>
+    * {
+      margin: 0%;
+      padding: 0%;
+    }
+
+    body {
+      background-color: rgb(151, 151, 151);
+    }
+
+    #mainimagebackground {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+    }
+
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    nav>input {
+      padding: 10px 20px;
+      width: 9%;
+      height: 60px;
+      font-size: 15px;
+      /* border-radius: 9%; */
+      /* transform:  */
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      border: none;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    input[type="search"]:hover {
+      width: 20%;
+      height: 26%;
+      font-size: 22px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+    nav>div>button {
+      padding: 10px 20px;
+      font-size: 15px;
+      margin-right: 10px;
+      border: none;
+      color: white;
+      background-color: black;
+      /* border-radius: 9%; */
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      font-family: "Montserrat", sans-serif;
+      cursor: pointer;
+    }
+
+    #showtemp {
+      position: absolute;
+      left: 4%;
+      top: 25%;
+      font-size: 220px;
+      font-family: "Montserrat", sans-serif;
+      color: rgb(0, 0, 0);
+    }
+
+    #showtempcityname {
+      position: absolute;
+      margin-top: -10%;
+      /* text-align: center; */
+      font-size: 50px;
+      left: 3%;
+    }
+
+    .fa-solid {
+      font-size: 30px;
+    }
+
+    #showimgaccordingtemp {
+      position: absolute;
+      left: 30%;
+      top: 16%;
+    }
+
+    nav>img {
+      width: 10%;
+    }
+
+    #Extracontent {
+      position: absolute;
+      top: 16%;
+      right: 15%;
+      color: rgb(225, 225, 225);
+      font-family: "Montserrat", sans-serif;
+    }
+
+    #Extracontent>h3 {
+      margin-top: 20%;
+      font-size: 20px;
+    }
+
+    #sevendays {
+      display: flex;
+      position: absolute;
+      bottom: 3%;
+      left: 2%;
+      height: 22%;
+      width: 80%;
+      color: white;
+      font-family: "Montserrat", sans-serif;
+      cursor: cell;
+    }
+
+    #sevendays>div {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      width: 10%;
+      font-size: 20px;
+      margin-left: 10px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    #sevendays>div:hover {
+      /* transform: scale(1.1); */
+      transform: scale(1.1);
+    }
+
+    #sevendays img {
+      width: 60%;
+      margin: auto;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      filter: invert(100%);
+    }
+
+    #sevendays>div>span:last-child {
+      position: absolute;
+      bottom: 0%;
+      /* left: 1%; */
+      margin-left: 50px;
+    }
+
+    .gmap_canvas {
+      position: absolute;
+      bottom: 2%;
+      right: 2%;
+      overflow: hidden;
+      /* background: none !important; */
+      height: 272px;
+      width: 382px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      border-radius: 50px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .gmap_canvas:hover {
+      width: 532px;
+    }
+
+    #showimgaccordingtemp {
+      width: 30%;
+      left: 40%;
+      top: 19%;
+    }
+    @media (max-width: 500px) {
+      /* nav{
+        justify-content: ;
+      } */
+      nav>div>button {
+      padding:3px 8px;
+      font-size: 8px;
+      margin-right: 10px;
+      border: none;
+      color: white;
+      background-color: black;
+      /* border-radius: 9%; */
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      font-family: "Montserrat", sans-serif;
+      cursor: pointer;
+    }
+    
+    nav>input {
+      padding: 10px 20px;
+      top:10px;
+      width: 40%;
+      height: 60px;
+      font-size: 15px;
+      /* border-radius: 9%; */
+      /* transform:  */
+      transition: all 0.5s ease-in-out;
+      position: relative;
+      border: none;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      font-family: "Montserrat", sans-serif;
+    }
+    input[type="search"]:hover {
+      width: 40%;
+      height: 26%; 
+      font-size: 22px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+    #showtemp {
+      position: relative;
+
+      font-size: 120px;
+
+       left: 0%;
+      /*top: 25%;
+      font-family: "Montserrat", sans-serif;
+      color: rgb(0, 0, 0); */
+    }
+    #showtempcityname {
+      position: relative;
+      font-size: 25px;
+      margin-top: 7px;
+    }
+    #sevendays>div>span:last-child {
+      /*position: absolute;
+      bottom: 0%;
+       left: 1%; */
+      margin-left: 10px;
+    }
+
+    #showimgaccordingtemp{
+      position: relative;
+      width: 70%;
+      left: 10%;
+      top: 19%;
+
+    }
+    #Extracontent {
+      display: flex;
+      position: relative;
+     
+      top: 16%; 
+       right: 0%; 
+       /* left: 10%; */
+
+      color: rgb(225, 225, 225);
+      font-family: "Montserrat", sans-serif;
+    }
+    #Extracontent h3{
+      margin: 2%; 
+      font-size: 12px;
+    }
+    #sevendays{
+      position: relative;
+      height: 120px;
+      width: 90%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+    }
+    .gmap_canvas{
+      position: relative;
+      bottom: 0%;
+    }
+
+    }
+
+
+      
+    
+  </style>
+</head>
+<body onload="mylocation()">
+  <img id="mainimagebackground" src="./Weather/RAIN.gif" alt="" />
+  <nav>
+    <img src="./Weather/01fbd6b60aff27041d7ceebea575ae3a-removebg-preview.png" alt="" />
+    <input type="Search" name="" id="search" placeholder="Search City .." />
+    <div>
+      <button>in C&deg; m/s</button>
+      <button>in F&deg; m/s</button>
+    </div>
+  </nav>
+  <div id="content">
+    <div id="showtemp">
+      <span>18&deg;</span>
+      <h2 id="showtempcityname">
+        <i class="fa-solid fa-location-dot"></i> Delhi
+      </h2>
+    </div>
+    <div>
+      <img id="showimgaccordingtemp" src="./Weather/RAIN GIRL.png" alt="" />
+    </div>
+    <div id="Extracontent">
+      <h3 id="wind">
+        <i class="fa-solid fa-wind"></i> Wind
+      </h3>
+      <h3 id="hum"><i class="fa-sharp fa-solid fa-droplet"></i> Humidity</h3>
+      <h3 id="up"><i class="fa-sharp fa-solid fa-sun"></i> S-R :- 06:45 </i></h3>
+      <h3 id="down"><i class="fa-sharp fa-solid fa-sun"></i> S-T :- 7:45</i></h3>
+    </div>
+    <div id="sevendays">
+      <div>
+        <span id="day1"> Mon</span><img src="./Weather/cloud.png" alt="" />
+        <span id="tempday1"> 20&deg;</span>
+      </div>
+      <div>
+        <span id="day2"> Tue</span><img src="./Weather/rain.png" alt="" />
+        <span id="tempday2"> 22&deg;</span>
+      </div>
+      <div>
+        <span id="day3"> Wed</span><img src="./Weather/sun+cloud.png" alt="" />
+        <span id="tempday3"> 32&deg;</span>
+      </div>
+      <div>
+        <span id="day4"> Thu</span><img src="./Weather/sun.png" alt="" />
+        <span id="tempday4">28&deg;</span>
+      </div>
+      <div>
+        <span id="day5"> Fri</span><img src="./Weather/sun+cloud.png" alt="" />
+        <span id="tempday5"> 24&deg;</span>
+      </div>
+      <div>
+        <span id="day6"> Sat</span><img src="./Weather/cloud.png" alt="" />
+        <span id="tempday6"> 21&deg;</span>
+      </div>
+      <div>
+        <span id="day7"> Sun</span><img src="./Weather/cloud.png" alt="" />
+        <span id="tempday7"> 16&deg;</span>
+      </div>
+    </div>
+    <div class="gmap_canvas">
+      <iframe width="682" height="272" id="gmap_canvas"
+        src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    </div>
+  </div>
+  <!-- <a href=""></a> -->
+  <!-- <a href="./Weather/sun+cloud.png"></a> -->
+</body>
+<script>
+  document.getElementById("search").addEventListener("input", debounced(tata, 500));
+
+  function debounced(fn, delay) {
+
+    let Timeout;
+    return function () {
+      if (Timeout) clearTimeout(Timeout);
+
+      Timeout = setTimeout(function () {
+        tata();
+      }, delay)
+    }
+  }
+
+
+  function tata() {
+    let city = document.getElementById("search").value;
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0e13cf00fef1bfec8244a88bd982e5c6&units=metric`;
+
+    async function promisee(res, rej) {
+      try {
+        let ans = await fetch(url);
+        let ans1 = await ans.json();
+        console.log("OK");
+        display(ans1);
+      } catch (error) {
+        console.log("NOT-OK");
+      }
+    }
+    promisee()
+
+    // console.log("sdgsdg");
+
+  }
+
+  function display(data) {
+    // event.preventDefault();
+    document.querySelector("#showtemp>span").innerHTML = Number(data.main.temp).toFixed(1) + "&deg";
+    document.getElementById("showtempcityname").innerHTML = ` <i class="fa-solid fa-location-dot"></i>  ${data.name}`;
+    document.getElementById("wind").innerHTML = `<i class="fa-solid fa-wind"></i>  ${data.wind.speed}`;
+    // document.getElementById("up").innerHTML=`<i class="fa-sharp fa-solid fa-sun"></i> ${data.name}`;
+    // document.getElementById("down").innerHTML=`<i class="fa-solid fa-location-dot"></i> ${data.name}`;
+    let main = data.weather[0].main;
+    if (main == 'Sunny') {
+      document.getElementById("mainimagebackground").src = "./Weather/HAPPY SUNNY.gif";
+      document.getElementById("showimgaccordingtemp").src = "./Weather/sun.png";
+
+    } else if (main == "Clouds" || main == "Haze") {
+      document.getElementById("mainimagebackground").src = "./Weather/clouds-storm.gif";
+      document.getElementById("showimgaccordingtemp").src = "./Weather/sun+cloud.png";
+
+    } else if (main == "Rain" || main == "Thunderstorm") {
+      document.getElementById("mainimagebackground").src = "./Weather/RAIN.gif";
+      document.getElementById("showimgaccordingtemp").src = "./Weather/RAIN GIRL.png";
+
+    }
+    document.getElementById("hum").innerHTML = `<i class="fa-sharp fa-solid fa-droplet"></i> ${data.main.humidity}`;
+    document.getElementById("gmap_canvas").src = `https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+  }
+
+
+
+
+
+</script>
+</html>
